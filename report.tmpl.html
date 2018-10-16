@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        {#asset css/reports.css @encoding=utf8}
+    </style>
+
+    <style>
+        {#asset css/bootstrap.min.css @encoding=utf8}
+    </style>
+</head>
+
+<body>
+    <div class="alert alert-primary" role="alert">
+    -- {{data}}
+    <span>{{{foo}}}</span>
+    </div>
+    <h1>Hello from Page 1</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID Transação</th>
+                <th>Data / Hora</th>
+                <th>Bandeira</th>
+                <th>Valor Venda</th>
+                <th>Taxa Básica</th>
+                <th>Desconto</th>
+                <th>Liquido a receber</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data.trasactions}}
+            <tr>
+                    <td>{{this}}</td>
+                <td>{{transaction_id}}</td>
+                <td>{{transaction_datetime}}</td>
+                <td>{{credit_card_flag}}</td>
+                <td>{{transaction_value}}</td>
+                <td>{{fee}}</td>
+                <td>{{discount}}</td>
+                <td>{{net_value}}</td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+
+    <div class='page-break'></div>
+
+    <h1>Hello from Page 2</h1>
+
+    <div class="page-break"></div>
+
+    <h1>Hello from Page 3</h1>
+
+</body>
+
+</html>

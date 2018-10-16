@@ -1,0 +1,7 @@
+
+jsreport.renderDefaults.logger.console = { "transport": "console", "level": "debug" };
+//jsreport.renderDefaults.chrome.timeout = 180000;
+
+jsreport.render("<h1>Hello world</h1>").then((out) => {
+    out.stream.pipe(resp);
+});

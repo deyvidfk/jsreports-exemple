@@ -1,0 +1,9 @@
+.page-break    { display: block; page-break-before: always; }
+
+tr    { page-break-inside:avoid; page-break-after:auto }
+table {
+    page-break-inside:auto ;
+ 
+border-collapse: collapse;
+width: 100%;
+}
