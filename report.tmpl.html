@@ -5,59 +5,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>7GAS - Relatório Financeiro II</title>
     <style>
-        {#asset css/reports.css @encoding=utf8}
+           {#asset assets/bootstrap.min.css @encoding=utf8}
+           {#asset assets/reports.css @encoding=utf8}
     </style>
 
-    <style>
-        {#asset css/bootstrap.min.css @encoding=utf8}
-    </style>
+   
 </head>
 
 <body>
-    <div class="alert alert-primary" role="alert">
-    -- {{data}}
-    <span>{{{foo}}}</span>
-    </div>
-    <h1>Hello from Page 1</h1>
+
+
+    <table>
+        <tr>
+            <th colspan="3" rowspan="2"> <img width="128" height="128" src='{#asset assets/7gas-logo.png @encoding=dataURI}'></th>
+            <th>CNPJ:</th>
+            <th>{{{company.cnpj}}}</th>
+        </tr>
+        <tr>
+            <td>Emissão:</td>
+            <td>{{{issueDate}}}</td>
+        </tr>
+        <tr>
+            <td colspan="3">Vendas por periodo em: {{{startDate}}} a {{{endDate}}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3">Operadora {{{operator.name}}}</td>
+            <td>Quantidade de transações</td>
+            <td>{{{transactionCount}}}</td>
+        </tr>
+    </table>
+
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID Transação</th>
-                <th>Data / Hora</th>
+                <th>Data/Hora</th>
                 <th>Bandeira</th>
                 <th>Valor Venda</th>
                 <th>Taxa Básica</th>
                 <th>Desconto</th>
-                <th>Liquido a receber</th>
+                <th>Líquido a receber</th>
             </tr>
         </thead>
         <tbody>
-            {{#each data.trasactions}}
+            {{#each sales.trasactions}}
             <tr>
-                    <td>{{this}}</td>
-                <td>{{transaction_id}}</td>
-                <td>{{transaction_datetime}}</td>
-                <td>{{credit_card_flag}}</td>
-                <td>{{transaction_value}}</td>
+                <td colspan="7">
+                    <h6>{{flag}}</h6>
+                </td>
+            </tr>
+            {{#each items}}
+            <tr>
+                <td>#{{id}}</td>
+                <td>{{datetime}}</td>
+                <td>{{creditCardFlag}}</td>
+                <td>{{transactionValue}}</td>
                 <td>{{fee}}</td>
                 <td>{{discount}}</td>
-                <td>{{net_value}}</td>
+                <td>{{netValue}}</td>
             </tr>
             {{/each}}
+            <tr>
 
+                <td colspan="3"><strong>Subtotal:</strong></td>
+                <td><strong>{{{totalsPerColumns.transactionValue}}}</strong></td>
+                <td><strong>{{{totalsPerColumns.fee}}}</strong> </td>
+                <td><strong>{{{totalsPerColumns.discount}}}</strong></td>
+                <td><strong>{{{totalsPerColumns.netValue}}}</strong></td>
+            </tr>
+            {{/each}}
         </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>Total:</strong></td>
+                <td><strong>{{{sales.totalsPerColumns.transactionValue}}}</strong></td>
+                <td><strong>{{{sales.totalsPerColumns.fee}}}</strong> </td>
+                <td><strong>{{{sales.totalsPerColumns.discount}}}</strong></td>
+                <td><strong>{{{sales.totalsPerColumns.netValue}}}</strong></td>
+            </tr>
+        </tfoot>
     </table>
 
-    <div class='page-break'></div>
-
-    <h1>Hello from Page 2</h1>
-
-    <div class="page-break"></div>
-
-    <h1>Hello from Page 3</h1>
+    <!-- <div class='page-break'></div> -->
 
 </body>
 
