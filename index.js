@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const htmpTmpl = fs.readFileSync(path.join(__dirname, "/report.tmpl.html"), "utf8");
+
 const jsReportOptions = {
     tasks: { strategy: 'in-process' },
     extensions: {
@@ -50,7 +50,7 @@ const jsReportService = function () {
 
             const reportResponse = await jsReport.render({
                 template: {
-                    content: htmpTmpl,
+                    content: pageArgs.templateContent,
                     engine: 'handlebars',
                     recipe: 'phantom-pdf',
                     phantom: {
@@ -61,7 +61,7 @@ const jsReportService = function () {
                 data: parameters
             });
 
-            fs.writeFileSync(`${pageArgs.fileName}.pdf`, reportResponse.content);
+            fs.writeFileSync(`${pageArgs.reportName}.pdf`, reportResponse.content);
 
             return reportResponse;
 
@@ -101,6 +101,9 @@ for (let index = 0; index < 40; index++) {
             netValue: 10
         })
 }
+
+
+const htmpTmplTmpl = fs.readFileSync(path.join(__dirname, "templates/7gas_relatório_financeiro_II.tmpl.html"), "utf8");
 
 jsReportService().renderReport({
     startDate: new Date().toISOString(),
@@ -152,7 +155,8 @@ jsReportService().renderReport({
         }]
     }
 },{
-    fileName:"7GAS - Relatório Financeiro II",
+    reportName:"output/7GAS - Relatório Financeiro II",
+    templateContent:htmpTmplTmpl,
     header:{
         title:"7GAS - Relatório Financeiro II"
     }
