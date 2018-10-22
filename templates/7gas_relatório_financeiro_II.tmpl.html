@@ -7,25 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>7GAS - Relatório Financeiro II</title>
     <style>
-           {#asset assets/bootstrap.min.css @encoding=utf8}
-           {#asset assets/reports.css @encoding=utf8}
+        {#asset assets/bootstrap.min.css @encoding=utf8}
+
+        {#asset assets/reports.css @encoding=utf8}
     </style>
 
-   
+
 </head>
 
 <body>
+
+
 
 
     <table>
         <tr>
             <th colspan="3" rowspan="2"> <img width="128" height="128" src='{#asset assets/7gas-logo.png @encoding=dataURI}'></th>
             <th>CNPJ:</th>
-            <th>{{{company.cnpj}}}</th>
+            <th>{{{header.gasstation.cnpj}}}</th>
         </tr>
         <tr>
             <td>Emissão:</td>
-            <td>{{{issueDate}}}</td>
+            <td>{{{header.issueDate}}}</td>
         </tr>
         <tr>
             <td colspan="3">Vendas por periodo em: {{{startDate}}} a {{{endDate}}}</td>
@@ -33,11 +36,12 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="3">Operadora {{{operator.name}}}</td>
+            <td colspan="3">Operadora {{{header.paymentServiceProvider.name}}}</td>
             <td>Quantidade de transações</td>
-            <td>{{{transactionCount}}}</td>
+            <td>{{{header.transactionCount}}}</td>
         </tr>
     </table>
+
 
     <table class="table table-striped">
         <thead>
@@ -52,46 +56,41 @@
             </tr>
         </thead>
         <tbody>
-            {{#each sales.trasactions}}
+            {{#forEach body}}
             <tr>
                 <td colspan="7">
-                    <h6>{{flag}}</h6>
+                    <h6>{{groupKey}}</h6>
                 </td>
             </tr>
-            {{#each items}}
+            {{#forEach groupItems}}
             <tr>
-                <td>#{{id}}</td>
-                <td>{{datetime}}</td>
-                <td>{{creditCardFlag}}</td>
-                <td>{{transactionValue}}</td>
-                <td>{{fee}}</td>
-                <td>{{discount}}</td>
-                <td>{{netValue}}</td>
-            </tr>
-            {{/each}}
-            <tr>
+                <td>#{{sale.id}}</td>
+                <td>{{sale.date}}</td>
+                <td>{{sale.payment.creditcard.flag}}</td>
+                <td>{{sale.payment.totalValue}}
 
-                <td colspan="3"><strong>Subtotal:</strong></td>
-                <td><strong>{{{totalsPerColumns.transactionValue}}}</strong></td>
-                <td><strong>{{{totalsPerColumns.fee}}}</strong> </td>
-                <td><strong>{{{totalsPerColumns.discount}}}</strong></td>
-                <td><strong>{{{totalsPerColumns.netValue}}}</strong></td>
+                    
+                </td>
+                <td>{{sale.payment.fee}}</td>
+                <td>{{sale.payment.discount}}</td>
+                <td>{{sale.payment.netValue}}</td>
             </tr>
-            {{/each}}
+            {{/forEach}}
+           
+                {{#unless isLast}}, {{/unless}}
+            {{/forEach}}
         </tbody>
 
         <tfoot>
             <tr>
                 <td colspan="3"><strong>Total:</strong></td>
-                <td><strong>{{{sales.totalsPerColumns.transactionValue}}}</strong></td>
-                <td><strong>{{{sales.totalsPerColumns.fee}}}</strong> </td>
-                <td><strong>{{{sales.totalsPerColumns.discount}}}</strong></td>
-                <td><strong>{{{sales.totalsPerColumns.netValue}}}</strong></td>
+                <td><strong>{{{footer.totalsPerColumns.totalValue}}}</strong></td>
+                <td><strong>{{{footer.totalsPerColumns.fee}}}</strong> </td>
+                <td><strong>{{{footer.totalsPerColumns.discount}}}</strong></td>
+                <td><strong>{{{footer.totalsPerColumns.netValue}}}</strong></td>
             </tr>
         </tfoot>
     </table>
-
-    <!-- <div class='page-break'></div> -->
 
 </body>
 

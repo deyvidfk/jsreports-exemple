@@ -1,0 +1,76 @@
+{
+  "body": [
+    {
+      "groupKey": "Mastercard",
+      "groupItems": [
+        {
+          "sale": {
+            "id": 1246,
+            "date": "2018-09-27T10:53:11.000Z",
+            "liter": 6.66814837001503,
+            "payment": {
+              "paymentServiceProvider": {
+                "name": "STONE",
+                "code": 1
+              },
+              "creditcard": {
+                "flag": "Mastercard"
+              },
+              "fee": 10,
+              "discount": 10,
+              "totalValue": 27,
+              "netValue": 27
+            }
+          }
+        },
+        {
+          "sale": {
+            "id": 1248,
+            "date": "2018-09-27T10:51:39.000Z",
+            "liter": 33.34074185007515,
+            "payment": {
+              "paymentServiceProvider": {
+                "name": "STONE",
+                "code": 1
+              },
+              "creditcard": {
+                "flag": "Mastercard"
+              },
+              "fee": 10,
+              "discount": 10,
+              "totalValue": 135,
+              "netValue": 135
+            }
+          }
+        }
+      ],
+      "totalsPerColumns": {
+        "totalValue": 162,
+        "discount": 20,
+        "fee": 20,
+        "netValue": 0
+      }
+    }
+  ],
+  "header": {
+    "transactionCount": 0,
+    "issueDate": "2018-10-22T04:08:25.798Z",
+    "gasstation": {
+      "id": 110595,
+      "name": "JOAO CARLOS ALTIERI POSTO DE GAZOLINA",
+      "cnpj": "62788963000159"
+    },
+    "paymentServiceProvider": {
+      "name": "STONE",
+      "code": 1
+    }
+  },
+  "footer": {
+    "totalsPerColumns": {
+      "totalValue": 0,
+      "discount": 0,
+      "fee": 0,
+      "netValue": 0
+    }
+  }
+}

@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "handlebars-helpers": "^0.10.0",
+    "handlebars-intl": "^1.1.2",
     "jsreport": "^2.2.0",
     "jsreport-assets": "^1.0.1",
     "jsreport-chrome-pdf": "^1.2.0",
