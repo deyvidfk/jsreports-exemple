@@ -1,16 +1,25 @@
+"use strict";
+
 const fs = require("fs");
 const path = require("path");
-const handlebars = require("handlebars");
-const helpers = require("handlebars-helpers")({
-  handlebars: handlebars
+let Handlebars = require("handlebars");
+let helpers = require("handlebars-helpers")({
+  handlebars: Handlebars
 });
-const HandlebarsIntl = require("handlebars-intl");
+let HandlebarsIntl = require("handlebars-intl");
+HandlebarsIntl.registerWith(Handlebars);
+
 const jsReportOptions = {
-  tasks: {
+  templatingEngines: {
     strategy: "in-process",
-    allowedModules: ["handlebars", "handlebars-helpers", "handlebars-intl"]
+    timeout: 50000,
+    allowedModules: ["*"]
   },
   extensions: {
+    "scripts": {
+      "timeout": 30000,
+      "allowedModules": "*" 
+    },
     assets: {
       enable: true,
       // wildcard pattern for accessible linked or external files
@@ -30,10 +39,9 @@ const jsReportOptions = {
     console: { transport: "console", level: "debug" }
   },
   allowLocalFilesAccess: true,
-  autoTempCleanup: false,
+  autoTempCleanup: true,
   loadConfig: false,
   dataDirectory: path.join(__dirname, "data"),
-  connectionString: { name: "fs" }
 };
 
 const jsReport = require("jsreport-core")(jsReportOptions);
